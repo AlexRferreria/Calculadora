@@ -13,29 +13,23 @@ import java.util.Scanner;
  */
 public class Practica2 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double res = 0;
-        String operacion;
-        boolean comprobar = false;
-
+    public static Scanner sc = new Scanner(System.in);
+    
+    public static String introducirNumero() {
+        String numero1 = "";
         do {
-
-            String numero1;
-            do {
-                System.out.println("\nIntrodueix el primer numero. ");
-                numero1 = sc.nextLine();
-            } while (!numero1.matches("[+-]?[\\d]*[.]?[\\d]+"));
-            double nume1 = Double.parseDouble(numero1);
-            double n1 = new Double(numero1);
-
-            do {
+            System.out.println("\nIntrodueix un numero. ");
+            numero1 = sc.nextLine();
+        } while (!numero1.matches("[+-]?[\\d]*[.]?[\\d]+"));
+        
+        return numero1;
+    }
+    
+    public static void Operacion(String operacion, boolean comprobar) {
+        do {
                 System.out.println("\nOperació? (Indica el signe)");
                 System.out.println("+ = sumar \n" + "- = restar \n"
-                        + "x = multiplicar \n" + "/ = dividir \n" 
+                        + "x = multiplicar \n" + "/ = dividir \n"
                         + "* = elevar primer num al segon num. \n"
                         + "% = residu");
                 operacion = sc.nextLine();
@@ -47,12 +41,29 @@ public class Practica2 {
                     comprobar = false;
                 }
             } while (comprobar != true);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        double res = 0;
+        String operacion = "";
+        boolean comprobar = false;
+
+        do {
+
+            String numero1;
+            numero1 = introducirNumero();
+            
+            double nume1 = Double.parseDouble(numero1);
+            double n1 = new Double(numero1);
+            
+            Operacion(operacion,comprobar);
 
             String numero2;
-            do {
-                System.out.println("\nIntrodueix el segon numero.");
-                numero2 = sc.nextLine();
-            } while (!numero2.matches("[+-]?[\\d]*[.]?[\\d]+"));
+            numero2 = introducirNumero();
+            
             double nume2 = Double.parseDouble(numero2);
             double n2 = new Double(numero2);
 
